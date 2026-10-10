@@ -1,0 +1,626 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Developer Portfolio | Code & Memes</title>
+
+<style>
+:root {
+    --bg: #0a0a12;
+    --card: #151522;
+    --purple: #a855f7;
+    --cyan: #22d3ee;
+    --text: #f5f3ff;
+    --muted: #aaa6bd;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body {
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+}
+a { color: inherit; }
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    padding: 16px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    background: #0a0a12ee;
+    border-bottom: 1px solid #29263a;
+    backdrop-filter: blur(12px);
+}
+.logo { font-size: 22px; font-weight: bold; color: var(--cyan); }
+nav ul {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    list-style: none;
+}
+nav a { text-decoration: none; font-size: 14px; }
+nav a:hover { color: var(--cyan); }
+section { padding: 80px 7%; }
+.hero {
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(ellipse at top, #351653, transparent 65%);
+}
+.pill {
+    color: var(--cyan);
+    border: 1px solid #4a3670;
+    border-radius: 30px;
+    padding: 5px 15px;
+    margin-bottom: 22px;
+    background: #171326;
+}
+.hero h1 { font-size: clamp(36px, 7vw, 70px); line-height: 1.2; }
+.gradient {
+    background: linear-gradient(90deg, var(--cyan), var(--purple));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+.hero p {
+    color: var(--muted);
+    max-width: 680px;
+    margin: 22px auto;
+    font-size: 17px;
+}
+.typing { color: var(--cyan); min-height: 32px; }
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 12px;
+}
+.btn {
+    padding: 11px 22px;
+    background: var(--purple);
+    border: 1px solid var(--purple);
+    border-radius: 9px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .25s;
+}
+.btn:hover { transform: translateY(-3px); }
+.btn.secondary { background: transparent; border-color: #49415f; }
+.title { text-align: center; font-size: clamp(28px, 4vw, 40px); }
+.subtitle { text-align: center; color: var(--muted); margin: 8px 0 35px; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.card {
+    padding: 25px;
+    background: var(--card);
+    border: 1px solid #2b293d;
+    border-radius: 15px;
+    transition: .25s;
+    min-width: 0;
+}
+.card:hover { transform: translateY(-5px); border-color: var(--purple); }
+.card h3 { margin-bottom: 12px; color: var(--cyan); }
+.muted { color: var(--muted); }
+.terminal {
+    background: #07070c;
+    border: 1px solid #302a45;
+    border-radius: 12px;
+    padding: 22px;
+    font-family: Consolas, monospace;
+    overflow-wrap: anywhere;
+}
+.terminal p { margin: 8px 0; }
+.green { color: #4ade80; }
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 25px;
+}
+.stat {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 18px 8px;
+    text-align: center;
+    border: 1px solid #2b293d;
+}
+.stat strong { display: block; color: var(--cyan); font-size: 25px; }
+.stat span { color: var(--muted); font-size: 13px; }
+.skills-list { display: grid; gap: 20px; }
+.skill-head { display: flex; justify-content: space-between; margin-bottom: 7px; }
+.bar { height: 9px; border-radius: 20px; background: #292538; overflow: hidden; }
+.fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--purple), var(--cyan));
+    border-radius: 20px;
+}
+.tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.tag { background: #262039; padding: 5px 12px; border-radius: 8px; font-size: 13px; }
+.project-icon { font-size: 38px; margin-bottom: 8px; }
+.project-link { display: inline-block; margin-top: 15px; color: var(--cyan); text-decoration: none; }
+.timeline { border-left: 2px solid #4d3473; padding-left: 23px; }
+.timeline-item { margin-bottom: 25px; position: relative; }
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -30px;
+    top: 8px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--cyan);
+}
+.meme-section { background: radial-gradient(ellipse at center, #28143a, transparent 75%); }
+.meme {
+    background: #171421;
+    border: 1px solid #3a304c;
+    border-radius: 14px;
+    padding: 13px;
+    text-align: center;
+    transition: .25s;
+    overflow: hidden;
+}
+.meme:hover { transform: rotate(-1deg) scale(1.02); }
+.meme-pic {
+    min-height: 190px;
+    padding: 18px 10px;
+    border-radius: 9px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(140deg, #382054, #101d37);
+}
+.meme-pic .emoji { font-size: 62px; line-height: 1.2; }
+.meme-top, .meme-bottom {
+    font-weight: 900;
+    font-size: 13px;
+    text-transform: uppercase;
+    line-height: 1.5;
+}
+.meme-caption { color: var(--muted); font-size: 13px; margin-top: 12px; }
+.center { text-align: center; }
+#randomResult { margin-top: 22px; }
+.fun-fact { text-align: center; }
+.fun-fact .emoji { font-size: 42px; }
+.contact-box { max-width: 650px; margin: auto; text-align: center; }
+.contact-box p { color: var(--muted); margin: 15px 0 25px; }
+footer { text-align: center; padding: 25px 7%; border-top: 1px solid #29263a; color: var(--muted); }
+footer span { color: var(--cyan); }
+@media (max-width: 760px) {
+    nav { justify-content: center; }
+    nav ul { justify-content: center; gap: 13px; }
+    .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 520px) {
+    section { padding: 60px 5%; }
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .stats { gap: 8px; }
+    .stat strong { font-size: 21px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">&lt;MyPortfolio /&gt;</div>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#journey">Journey</a></li>
+        <li><a href="#memes">Memes 😂</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- HOME -->
+<section class="hero" id="home">
+    <div class="pill">🟢 Welcome to my digital universe</div>
+    <h1>Hey, I'm <span class="gradient">Your Name</span> 👋</h1>
+    <h2 class="typing" id="typing">Aspiring Developer 💻</h2>
+    <p>
+        Student by day, coder by night, bug creator 24/7.
+        I enjoy building websites, learning programming,
+        and turning creative ideas into real projects.
+        Warning: my code occasionally has its own plans.
+    </p>
+    <div class="buttons">
+        <a class="btn" href="#projects">🚀 Explore Projects</a>
+        <a class="btn secondary" href="#contact">📩 Contact Me</a>
+        <a class="btn secondary" href="#memes">😂 Meme Time</a>
+    </div>
+    <div class="stats">
+        <div class="stat"><strong>💡</strong><span>Always Learning</span></div>
+        <div class="stat"><strong>☕</strong><span>Powered by Caffeine</span></div>
+        <div class="stat"><strong>🐛</strong><span>Bug Hunter</span></div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+    <h2 class="title">About <span class="gradient">Me</span></h2>
+    <p class="subtitle">A little introduction to the human behind the keyboard.</p>
+
+    <div class="grid-2">
+        <div class="card">
+            <h3>👨‍💻 Who Am I?</h3>
+            <p class="muted">
+                Hey! I'm Your Name, an aspiring developer passionate about
+                technology, coding, and creative problem-solving.
+                I'm exploring web development and programming while
+                working on projects that help me learn by doing.
+            </p>
+            <br>
+            <p class="muted">
+                My goal is to become a skilled developer, build useful
+                applications, and collaborate with people who love technology.
+            </p>
+            <div class="tags">
+                <span class="tag">🎯 Goal-oriented</span>
+                <span class="tag">🧠 Curious</span>
+                <span class="tag">🔥 Motivated</span>
+            </div>
+        </div>
+        <div class="terminal">
+            <p><span class="green">user@portfolio</span>:~$ whoami</p>
+            <p>A developer in progress 👨‍💻</p>
+            <p><span class="green">user@portfolio</span>:~$ interests</p>
+            <p>Programming, technology, gaming, memes</p>
+            <p><span class="green">user@portfolio</span>:~$ current_mood</p>
+            <p>It works! Don't ask how. 😎</p>
+            <p><span class="green">user@portfolio</span>:~$ future_plan</p>
+            <p>Build something amazing 🚀</p>
+            <p><span class="green">user@portfolio</span>:~$ _</p>
+        </div>
+    </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+    <h2 class="title">My <span class="gradient">Skills</span></h2>
+    <p class="subtitle">Sample progress levels — edit these to reflect your real skills.</p>
+    <div class="card skills-list">
+        <div>
+            <div class="skill-head"><span>HTML</span><span>80%</span></div>
+            <div class="bar"><div class="fill" style="width:80%"></div></div>
+        </div>
+        <div>
+            <div class="skill-head"><span>CSS</span><span>65%</span></div>
+            <div class="bar"><div class="fill" style="width:65%"></div></div>
+        </div>
+        <div>
+            <div class="skill-head"><span>JavaScript</span><span>50%</span></div>
+            <div class="bar"><div class="fill" style="width:50%"></div></div>
+        </div>
+        <div>
+            <div class="skill-head"><span>C Programming</span><span>60%</span></div>
+            <div class="bar"><div class="fill" style="width:60%"></div></div>
+        </div>
+        <div>
+            <div class="skill-head"><span>Problem Solving</span><span>70%</span></div>
+            <div class="bar"><div class="fill" style="width:70%"></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+    <h2 class="title">My <span class="gradient">Projects</span></h2>
+    <p class="subtitle">A showcase of projects and ideas. Replace these examples with your real work.</p>
+
+    <div class="grid-3">
+        <div class="card">
+            <div class="project-icon">🌐</div>
+            <h3>Personal Portfolio</h3>
+            <p class="muted">A responsive website showcasing my profile, skills, and projects.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
+        </div>
+        <div class="card">
+            <div class="project-icon">🧮</div>
+            <h3>Smart Calculator</h3>
+            <p class="muted">A beginner-friendly project for practicing logic and interactive interfaces.</p>
+            <div class="tags"><span class="tag">JavaScript</span><span class="tag">Logic</span></div>
+        </div>
+        <div class="card">
+            <div class="project-icon">😂</div>
+            <h3>Meme Generator</h3>
+            <p class="muted">A fun idea for generating coding jokes and sharing developer humor.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">JavaScript</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- JOURNEY -->
+<section id="journey">
+    <h2 class="title">My Learning <span class="gradient">Journey</span></h2>
+    <p class="subtitle">Every expert started by searching for a missing semicolon.</p>
+    <div class="card timeline">
+        <div class="timeline-item">
+            <h3>🌱 The Beginning</h3>
+            <p class="muted">Started exploring programming and learning the fundamentals of writing code.</p>
+        </div>
+        <div class="timeline-item">
+            <h3>💻 Building Projects</h3>
+            <p class="muted">Practicing HTML, CSS, JavaScript, and C by solving problems and making projects.</p>
+        </div>
+        <div class="timeline-item">
+            <h3>🚀 The Next Level</h3>
+            <p class="muted">Working toward better projects, stronger coding skills, and real-world experience.</p>
+        </div>
+    </div>
+</section>
+
+<!-- FUN FACTS -->
+<section id="facts">
+    <h2 class="title">Developer <span class="gradient">Facts</span> 🤓</h2>
+    <p class="subtitle">Highly scientific observations from the world of programming.</p>
+    <div class="grid-3">
+        <div class="card fun-fact">
+            <div class="emoji">☕</div>
+            <h3>Caffeine Engine</h3>
+            <p class="muted">Coffee in, code out. Usually.</p>
+        </div>
+        <div class="card fun-fact">
+            <div class="emoji">🐛</div>
+            <h3>Bug Collector</h3>
+            <p class="muted">I don't create bugs. I discover unexpected features.</p>
+        </div>
+        <div class="card fun-fact">
+            <div class="emoji">🔍</div>
+            <h3>Search Expert</h3>
+            <p class="muted">Professional at finding the exact error message online.</p>
+        </div>
+    </div>
+</section>
+
+<!-- MEMES -->
+<section class="meme-section" id="memes">
+    <h2 class="title">The Ultimate <span class="gradient">Meme Zone</span> 😂</h2>
+    <p class="subtitle">If you understand these, you have officially entered developer mode.</p>
+
+    <div class="grid-3" id="memeGrid">
+        <div class="meme">
+            <div class="meme-pic">
+                <div class="meme-top">Me: one small change</div>
+                <div class="emoji">🔥💻🔥</div>
+                <div class="meme-bottom">The entire project</div>
+            </div>
+            <p class="meme-caption">Everything was working five minutes ago.</p>
+        </div>
+        <div class="meme">
+            <div class="meme-pic">
+                <div class="meme-top">Code works first try</div>
+                <div class="emoji">😎🕶️</div>
+                <div class="meme-bottom">I am a genius</div>
+            </div>
+            <p class="meme-caption">It was a Hello World program. Details.</p>
+        </div>
+        <div class="meme">
+            <div class="meme-pic">
+                <div class="meme-top">Bug found</div>
+                <div class="emoji">🔎🤡</div>
+                <div class="meme-bottom">I wrote that code</div>
+            </div>
+            <p class="meme-caption">The enemy was me all along.</p>
+        </div>
+        <div class="meme">
+            <div class="meme-pic">
+                <div class="meme-top">Me at 11 PM</div>
+                <div class="emoji">🌙💻</div>
+                <div class="meme-bottom">One more feature</div>
+            </div>
+            <p class="meme-caption">Me at 4 AM: why is the sun coming up?</p>
+        </div>
+        <div class="meme">
+            <div class="meme-pic">
+                <div class="meme-top">Stack Overflow</div>
+                <div class="emoji">🙏😭</div>
+                <div class="meme-bottom">My trusted teammate</div>
+            </div>
+            <p class="meme-caption">Copy, paste, understand it next week.</p>
+        </div>
+        <div class="meme">
+            <div class="meme-pic">
+                <div class="meme-top">Delete semicolon</div>
+                <div class="emoji">💀</div>
+                <div class="meme-bottom">100 errors appear</div>
+            </div>
+            <p class="meme-caption">One character. A thousand problems.</p>
+        </div>
+    </div>
+
+    <div class="center">
+        <button class="btn" id="randomMeme" style="margin-top:28px">
+            🎲 Generate Another Meme
+        </button>
+        <div id="randomResult" aria-live="polite"></div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <div class="contact-box">
+        <h2 class="title">Let's <span class="gradient">Connect</span> 🤝</h2>
+        <p>
+            Interested in working together, discussing technology,
+            or sharing programming memes? My inbox is open!
+        </p>
+        <div class="buttons">
+            <a class="btn" href="mailto:your.email@example.com">📩 Email Me</a>
+            <a class="btn secondary" href="https://github.com/" target="_blank" rel="noopener noreferrer">🐙 GitHub</a>
+            <a class="btn secondary" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">💼 LinkedIn</a>
+        </div>
+        <p style="margin-top:25px">Replace the example links with your actual profiles.</p>
+    </div>
+</section>
+
+<footer>
+    <p>Made with <span>❤️</span>, ☕, and 47 open browser tabs.</p>
+    <p>© <span id="year"></span> Your Name · Built with HTML, CSS & JavaScript</p>
+</footer>
+
+<script>
+// Current year
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// Animated typing effect
+const phrases = [
+    "Aspiring Developer 💻",
+    "C Programmer 🧠",
+    "Web Development Enthusiast 🌐",
+    "Professional Bug Creator 🐛",
+    "Meme Engineer 😂"
+];
+
+let phraseIndex = 0;
+let charIndex = 0;
+let deleting = false;
+const typing = document.getElementById("typing");
+
+function typeEffect() {
+    const phrase = phrases[phraseIndex];
+
+    typing.textContent = phrase.substring(0, charIndex);
+
+    if (!deleting) {
+        charIndex++;
+        if (charIndex > phrase.length) {
+            deleting = true;
+            setTimeout(typeEffect, 1100);
+            return;
+        }
+    } else {
+        charIndex--;
+        if (charIndex < 0) {
+            deleting = false;
+            charIndex = 0;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+        }
+    }
+
+    setTimeout(typeEffect, deleting ? 45 : 85);
+}
+typeEffect();
+
+// Random meme generator
+const memes = [
+    {
+        top: "I fixed one bug",
+        emoji: "🥳",
+        bottom: "Created three more",
+        caption: "Software development: the circle of life."
+    },
+    {
+        top: "Client: make it simple",
+        emoji: "🤯",
+        bottom: "Adds 52 requirements",
+        caption: "Simple is apparently a very complicated word."
+    },
+    {
+        top: "Git commit message",
+        emoji: "🫠",
+        bottom: "Final final fix 2",
+        caption: "Naming commits is its own programming language."
+    },
+    {
+        top: "Internet disconnected",
+        emoji: "😭",
+        bottom: "How do I code now?",
+        caption: "My entire development environment was online."
+    },
+    {
+        top: "Works on my laptop",
+        emoji: "😌",
+        bottom: "Production is broken",
+        caption: "And suddenly the developer becomes a detective."
+    },
+    {
+        top: "Just one tutorial",
+        emoji: "📚",
+        bottom: "Watched 37 videos",
+        caption: "Tutorial completion is not the same as building the project."
+    },
+    {
+        top: "Forgot a bracket",
+        emoji: "🔍",
+        bottom: "Debugged for 2 hours",
+        caption: "The smallest things cause the biggest headaches."
+    },
+    {
+        top: "Exam tomorrow",
+        emoji: "🏃💨",
+        bottom: "Hello World today",
+        caption: "The academic comeback starts approximately now."
+    },
+    {
+        top: "My code from yesterday",
+        emoji: "🤨",
+        bottom: "Who wrote this?",
+        caption: "Future me is not impressed with past me."
+    },
+    {
+        top: "Delete node_modules",
+        emoji: "🙏",
+        bottom: "Pray and reinstall",
+        caption: "Sometimes the ritual must be performed."
+    }
+];
+
+document.getElementById("randomMeme").addEventListener("click", function() {
+    const meme = memes[Math.floor(Math.random() * memes.length)];
+    const result = document.getElementById("randomResult");
+
+    result.replaceChildren();
+
+    const card = document.createElement("div");
+    card.className = "meme";
+    card.style.maxWidth = "350px";
+    card.style.margin = "0 auto";
+
+    const picture = document.createElement("div");
+    picture.className = "meme-pic";
+
+    const top = document.createElement("div");
+    top.className = "meme-top";
+    top.textContent = meme.top;
+
+    const emoji = document.createElement("div");
+    emoji.className = "emoji";
+    emoji.textContent = meme.emoji;
+
+    const bottom = document.createElement("div");
+    bottom.className = "meme-bottom";
+    bottom.textContent = meme.bottom;
+
+    const caption = document.createElement("p");
+    caption.className = "meme-caption";
+    caption.textContent = meme.caption;
+
+    picture.append(top, emoji, bottom);
+    card.append(picture, caption);
+    result.append(card);
+});
+</script>
+
+</body>
+</html>
